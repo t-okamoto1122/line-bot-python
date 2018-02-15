@@ -2,7 +2,8 @@ class Reply:
     # def __init__(self, reply_msg , answer):
     #     self.reply_msg = reply_msg
     #     self.answer = answer
-    def __init__(self):
+    def __init__(self, text):
+        self.text = text
         print("Reply init")
 
 
