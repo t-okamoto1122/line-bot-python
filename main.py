@@ -69,6 +69,7 @@ def message_text(event):
         #TextSendMessage(text=event.message.text + "aa")
         TextSendMessage("aa")
     )
+    print(event.message.text)
     app.logger.info(event.message.text)
 
 
