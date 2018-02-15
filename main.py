@@ -49,8 +49,7 @@ def callback():
     signature = request.headers['X-Line-Signature']
 
     # get request body as text
-    #body = request.get_data(as_text=True)
-    body = "aaaa"
+    body = request.get_data(as_text=True)
 
     app.logger.info("Request body: " + body)
 
@@ -65,10 +64,10 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
-    #line_bot_api.reply_message(
-    #    event.reply_token,
-    #    TextSendMessage(text=event.message.text)
-    #)
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text="test")
+    )
     print(event.message.text)
     app.logger.info(event.message.text)
 
@@ -76,4 +75,3 @@ def message_text(event):
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
-    print("----app start ----")
