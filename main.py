@@ -25,7 +25,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage,
+    MessageEvent, TextMessage, TextSendMessage,PostbackEvent
 )
 
 app = Flask(__name__)
@@ -68,7 +68,7 @@ def callback():
 def message_text(event):
 
     print("受信メッセージ：" + event.message.as_json_string())
-    print("受信メッセージ：" + event.message.id)
+    print("受信メッセージ：" + PostbackEvent.as_json_string())
     print("受信メッセージ：" + event.message.text)
     reply = reply_msg.Reply()
     result = reply.reply(event.message.text)
