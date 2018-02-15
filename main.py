@@ -69,7 +69,9 @@ def callback():
 def message_text(event):
 
     print("受信メッセージ：" + event.message.text)
-    result = reply_msg.reply(event.message.text)
+    reply = reply_msg.Reply()
+    result = reply.reply(event.message.text)
+
 
     line_bot_api.reply_message(
         event.reply_token,
