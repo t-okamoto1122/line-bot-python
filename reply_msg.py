@@ -3,7 +3,7 @@ class Reply:
     #     self.reply_msg = reply_msg
     #     self.answer = answer
     def __init__(self):
-        pass
+        print("Reply init")
 
 
     def reply(request_text):
