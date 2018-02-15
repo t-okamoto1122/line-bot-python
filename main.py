@@ -29,6 +29,7 @@ from linebot.models import (
 )
 
 app = Flask(__name__)
+previous_msg = ""
 
 # get channel_secret and channel_access_token from your environment variable
 channel_secret = os.getenv('LINE_CHANNEL_SECRET', None)
@@ -50,7 +51,6 @@ def callback():
     signature = request.headers['X-Line-Signature']
 
     # get request body as text
-    body = "aaa"
     body = request.get_data(as_text=True)
 
     app.logger.info("Request body: " + body)
@@ -58,7 +58,6 @@ def callback():
     # handle webhook body
     try:
         handler.handle(body, signature)
-        app.logger.info("bbbbbb")
     except InvalidSignatureError:
         abort(400)
 
@@ -68,10 +67,11 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
 
+    print("受信メッセージ：" + event.message.as_json_string())
+    print("受信メッセージ：" + event.message.id)
     print("受信メッセージ：" + event.message.text)
     reply = reply_msg.Reply()
     result = reply.reply(event.message.text)
-
 
     line_bot_api.reply_message(
         event.reply_token,
@@ -82,6 +82,9 @@ def message_text(event):
     #     TextSendMessage(text=event.message.text)
     # )
     app.logger.info(event.message.text)
+
+    previous_msg = result
+    print(" end of message" + previous_msg)
 
 
 if __name__ == "__main__":
