@@ -49,7 +49,8 @@ def callback():
     signature = request.headers['X-Line-Signature']
 
     # get request body as text
-    body = request.get_data(as_text=True)
+    body = "aaa"
+    #body = request.get_data(as_text=True)
 
     app.logger.info("Request body: " + body)
 
@@ -68,7 +69,6 @@ def message_text(event):
         event.reply_token,
         TextSendMessage(text=event.message.text)
     )
-    print(event.message.text)
     app.logger.info(event.message.text)
 
 
