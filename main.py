@@ -50,6 +50,7 @@ def callback():
 
     # get request body as text
     body = request.get_data(as_text=True)
+
     app.logger.info("Request body: " + body)
 
     # handle webhook body
@@ -68,7 +69,7 @@ def message_text(event):
         #TextSendMessage(text=event.message.text + "aa")
         TextSendMessage("aa")
     )
-    print(event.message.text)
+    app.logger.info(event.message.text)
 
 
 if __name__ == "__main__":
