@@ -14,6 +14,7 @@
 
 import os
 import sys
+import reply_msg
 from argparse import ArgumentParser
 
 from flask import Flask, request, abort
@@ -67,10 +68,12 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
 
-    print("受信メッセージ" + event.message.text)
+    print("受信メッセージ：" + event.message.text)
+    result = reply_msg.reply(event.message.text)
+
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage("reply text")
+        TextSendMessage(result)
     )
     # line_bot_api.reply_message(
     #     event.reply_token,
