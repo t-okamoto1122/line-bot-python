@@ -65,8 +65,10 @@ def callback():
 def message_text(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text + "aa")
+        #TextSendMessage(text=event.message.text + "aa")
+        TextSendMessage("aa")
     )
+    print(event.message.text)
 
 
 if __name__ == "__main__":
