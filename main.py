@@ -49,7 +49,8 @@ def callback():
     signature = request.headers['X-Line-Signature']
 
     # get request body as text
-    body = request.get_data(as_text=True)
+    #body = request.get_data(as_text=True)
+    body = "aaaa"
 
     app.logger.info("Request body: " + body)
 
@@ -75,3 +76,4 @@ def message_text(event):
 if __name__ == "__main__":
     port = int(os.getenv("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+    print("----app start ----")
