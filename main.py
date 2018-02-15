@@ -57,7 +57,7 @@ def callback():
     # handle webhook body
     try:
         handler.handle(body, signature)
-        print("aaaaa")
+        app.logger.info("bbbbbb")
     except InvalidSignatureError:
         abort(400)
 
@@ -68,7 +68,7 @@ def callback():
 def message_text(event):
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=event.message.text)
+        TextSendMessage("reply")
     )
     app.logger.info(event.message.text)
 
