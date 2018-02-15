@@ -6,8 +6,7 @@ class Reply:
         self.text = text
         print("Reply init")
 
-
-    def reply(request_text):
+    def reply(self, request_text):
         if request_text == "a":
             return "No.1"
         elif request_text == "b":
