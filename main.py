@@ -80,8 +80,8 @@ def message_text(event):
     template_message = TemplateSendMessage(
         alt_text='Buttons template',
         template=ButtonsTemplate(
-            thumbnail_image_url='',
-            title='Menu', text="'" + question + "'",
+            thumbnail_image_url='https://example.com/image.jpg',
+            title='Menu', text='Please select',
             actions=[
                 PostbackTemplateAction(
                     label='postback', text='postback text',
