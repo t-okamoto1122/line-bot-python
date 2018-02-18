@@ -81,10 +81,10 @@ def message_text(event):
         alt_text='Buttons template',
         template=ButtonsTemplate(
             thumbnail_image_url='https://example.com/image.jpg',
-            title='Menu', text=question,
+            title='Question', text=question,
             actions=[
                 PostbackTemplateAction(
-                    label='postback', text='postback text',
+                    label='answer', text=answer,
                     data='action=buy&itemid=1'
                 )
             ]
