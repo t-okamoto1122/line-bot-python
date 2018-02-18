@@ -26,7 +26,7 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import (
-    MessageEvent, TextMessage, TextSendMessage, PostbackEvent, TemplateSendMessage, ConfirmTemplate, MessageTemplateAction
+    MessageEvent, TextMessage, TextSendMessage, PostbackEvent, PostbackTemplateAction, ButtonsTemplate, TemplateSendMessage, ConfirmTemplate, MessageTemplateAction
 )
 
 app = Flask(__name__)
@@ -72,17 +72,40 @@ def message_text(event):
 
     print("Q&A :", question, answer)
 
-    confirm_template = ConfirmTemplate(text=question, actions=[
-        MessageTemplateAction(label='答え', text=answer),
-        MessageTemplateAction(label='答え', text=answer),
-    ])
+    # confirm_template = ConfirmTemplate(text=question, actions=[
+    #     MessageTemplateAction(label='答え', text=answer),
+    #     MessageTemplateAction(label='答え', text=answer),
+    # ])
 
     template_message = TemplateSendMessage(
-        alt_text='Confirm alt text', template=confirm_template)
+        alt_text='Buttons template',
+        template=ButtonsTemplate(
+            thumbnail_image_url='https://example.com/image.jpg',
+            title='Menu', text='Please select',
+            actions=[
+                PostbackTemplateAction(
+                    label='postback', text='postback text',
+                    data='action=buy&itemid=1'
+                )
+            ]
+        )
+    )
+
+    # template_message = TemplateSendMessage(
+    #     alt_text='Confirm alt text', template=confirm_template)
     line_bot_api.reply_message(
         event.reply_token,
         template_message
     )
+
+
+    # template_message = TemplateSendMessage(
+    #     alt_text='Confirm alt text', template=confirm_template)
+    # line_bot_api.reply_message(
+    #     event.reply_token,
+    #     template_message
+    # )
+
 
     # line_bot_api.reply_message(
     #     event.reply_token,
