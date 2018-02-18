@@ -18,13 +18,7 @@ scope = ['https://spreadsheets.google.com/feeds']
 # 3でダウンロードしたjsonファイルを指定する
 credentials = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
 client = gspread.authorize(credentials)
-
 sheet = client.open("English-line-bot").sheet1
-random = create_random_num(sheet)
-print(random)
-question = sheet.cell(int(random), 3).value
-
-print(question)
 
 
 class Reply:
@@ -36,5 +30,7 @@ class Reply:
         print("Reply init")
 
     def reply(self, request_text):
+        random = create_random_num(sheet)
+        question = sheet.cell(int(random), 3).value
         return question
 
