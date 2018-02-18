@@ -68,57 +68,28 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
     reply = reply_msg.Reply()
-    question, answer = reply.reply(event.message.text)
-
-    print("Q&A :", question, answer)
-
-    # confirm_template = ConfirmTemplate(text=question, actions=[
-    #     MessageTemplateAction(label='答え', text=answer),
-    #     MessageTemplateAction(label='答え', text=answer),
-    # ])
+    question, answer, q_num = reply.reply(event.message.text)
 
     template_message = TemplateSendMessage(
         alt_text='Buttons template',
         template=ButtonsTemplate(
-            thumbnail_image_url='https://example.com/image.jpg',
-            title='Question', text=question,
+            thumbnail_image_url='',
+            title='Question' + str(q_num), text=question,
             actions=[
                 PostbackTemplateAction(
-                    label='answer', text=answer,
+                    label='Answer', text=answer,
                     data='action=buy&itemid=1'
                 )
             ]
         )
     )
 
-    # template_message = TemplateSendMessage(
-    #     alt_text='Confirm alt text', template=confirm_template)
+
+
     line_bot_api.reply_message(
         event.reply_token,
         template_message
     )
-
-
-    # template_message = TemplateSendMessage(
-    #     alt_text='Confirm alt text', template=confirm_template)
-    # line_bot_api.reply_message(
-    #     event.reply_token,
-    #     template_message
-    # )
-
-
-    # line_bot_api.reply_message(
-    #     event.reply_token,
-    #     TextSendMessage(result)
-    # )
-
-    # echo reply
-    # line_bot_api.reply_message(
-    #     event.reply_token,
-    #     TextSendMessage(text=event.message.text)
-    # )
-
-    app.logger.info(event.message.text)
 
 
 if __name__ == "__main__":
