@@ -71,24 +71,23 @@ def message_text(event):
     print("受信メッセージ：" + event.message.as_json_string())
     print("受信メッセージ：" + event.message.text)
     reply = reply_msg.Reply()
-    result = reply.reply(event.message.text)
+    question, answer = reply.reply(event.message.text)
 
-    # confirm_template = ConfirmTemplate(text='Do it?', actions=[
-    #     MessageTemplateAction(label='Yes', text='Yes!'),
-    #     MessageTemplateAction(label='No', text='No!'),
-    # ])
-    #
-    # template_message = TemplateSendMessage(
-    #     alt_text='Confirm alt text', template=confirm_template)
-    # line_bot_api.reply_message(
-    #     event.reply_token,
-    #     template_message
-    # )
+    confirm_template = ConfirmTemplate(text=question, actions=[
+        MessageTemplateAction(label='答え', text=answer),
+    ])
 
+    template_message = TemplateSendMessage(
+        alt_text='Confirm alt text', template=confirm_template)
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(result)
+        template_message
     )
+
+    # line_bot_api.reply_message(
+    #     event.reply_token,
+    #     TextSendMessage(result)
+    # )
 
     # echo reply
     # line_bot_api.reply_message(

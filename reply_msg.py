@@ -32,5 +32,6 @@ class Reply:
     def reply(self, request_text):
         random = create_random_num(sheet)
         question = sheet.cell(int(random), 3).value
-        return question
+        answer = sheet.cell(int(random), 2).value
+        return question, answer
 
