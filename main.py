@@ -67,13 +67,13 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
-
-    print("受信メッセージ：" + event.message.as_json_string())
-    print("受信メッセージ：" + event.message.text)
     reply = reply_msg.Reply()
     question, answer = reply.reply(event.message.text)
 
+    print("Q&A :", question, answer)
+
     confirm_template = ConfirmTemplate(text=question, actions=[
+        MessageTemplateAction(label='答え', text=answer),
         MessageTemplateAction(label='答え', text=answer),
     ])
 
