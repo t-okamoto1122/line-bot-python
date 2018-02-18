@@ -73,7 +73,6 @@ def message_text(event):
     template_message = TemplateSendMessage(
         alt_text='Buttons template',
         template=ButtonsTemplate(
-            thumbnail_image_url='',
             title='Question' + str(q_num), text=question,
             actions=[
                 PostbackTemplateAction(
