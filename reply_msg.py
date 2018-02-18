@@ -33,5 +33,5 @@ class Reply:
         random = create_random_num(sheet)
         question = sheet.cell(int(random), 3).value
         answer = sheet.cell(int(random), 2).value
-        return question, answer
+        return question, answer, random
 
