@@ -84,8 +84,7 @@ def message_text(event):
             title='Menu', text='Please select',
             actions=[
                 PostbackTemplateAction(
-                    label='postback', text='postback text',
-                    data='action=buy&itemid=1'
+                    label='postback', text='postback text'
                 )
             ]
         )
