@@ -42,8 +42,8 @@ class Reply:
             sheet.update_cell(int(random), 4, '1')
             frequency = 1
         else:
-            sheet.update_cell(int(random), 4, str(int(rate) + 1))
             frequency = int(rate) + 1
+            sheet.update_cell(int(random), 4, frequency)
 
         return question, answer, random, frequency
 
