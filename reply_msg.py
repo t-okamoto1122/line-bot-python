@@ -37,11 +37,12 @@ class Reply:
 
         # record a frequency of questions
         rate = sheet.cell(int(random), 4).value
+        print(rate)
         if rate is None:
-            sheet.update_cell(int(random), 4, 1)
+            sheet.update_cell(int(random), 4, '1')
             frequency = 1
         else:
-            sheet.update_cell(int(random), 4, int(rate) + 1)
+            sheet.update_cell(int(random), 4, str(int(rate) + 1))
             frequency = int(rate) + 1
 
         return question, answer, random, frequency
