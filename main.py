@@ -68,12 +68,12 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
     reply = reply_msg.Reply()
-    question, answer, q_num = reply.reply(event.message.text)
+    question, answer, q_num, frequency = reply.reply(event.message.text)
 
     template_message = TemplateSendMessage(
         alt_text='Buttons template',
         template=ButtonsTemplate(
-            title='Question' + str(q_num), text=question,
+            title='Question' + str(q_num) + '/n' + str(frequency) + '回目', text=question,
             actions=[
                 PostbackTemplateAction(
                     label='Answer', text=answer,
@@ -82,8 +82,6 @@ def message_text(event):
             ]
         )
     )
-
-
 
     line_bot_api.reply_message(
         event.reply_token,

@@ -31,7 +31,18 @@ class Reply:
 
     def reply(self, request_text):
         random = create_random_num(sheet)
+        # pick out question and answer
         question = sheet.cell(int(random), 3).value
         answer = sheet.cell(int(random), 2).value
-        return question, answer, random
+
+        # record a frequency of questions
+        rate = sheet.cell(int(random), 4).value
+        if rate is None:
+            sheet.update_cell(int(random), 4, 1)
+            frequency = 1
+        else:
+            sheet.update_cell(int(random), 4, int(rate) + 1)
+            frequency = int(rate) + 1
+
+        return question, answer, random, frequency
 
