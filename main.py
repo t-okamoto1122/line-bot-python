@@ -73,7 +73,7 @@ def message_text(event):
     template_message = TemplateSendMessage(
         alt_text='Buttons template',
         template=ButtonsTemplate(
-            title='Question' + str(q_num) + '/n' + str(frequency) + '回目', text=question,
+            title='Question' + str(q_num) + '\n' + str(frequency) + '回目', text=question,
             actions=[
                 PostbackTemplateAction(
                     label='Answer', text=answer,
