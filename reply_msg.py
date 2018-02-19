@@ -27,7 +27,6 @@ class Reply:
     #     self.answer = answer
     def __init__(self):
         pass
-        print("Reply init")
 
     def reply(self, request_text):
         random = create_random_num(sheet)
@@ -37,11 +36,13 @@ class Reply:
 
         # record a frequency of questions
         rate = sheet.cell(int(random), 4).value
-        print(rate)
-        if rate is None:
+        print('rate num:', rate)
+        if rate is '':
+            print('rate is None')
             sheet.update_cell(int(random), 4, '1')
             frequency = 1
         else:
+            print('rate has value')
             frequency = int(rate) + 1
             sheet.update_cell(int(random), 4, frequency)
 
