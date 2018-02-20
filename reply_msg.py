@@ -33,7 +33,7 @@ def select_random(all_records):
     print('select_random(),len(all_records)', len(all_records))
     for i, record in enumerate(all_records):
 
-        if record[-1] == 'done':
+        if record[-1] != 'done':
             print(record[-1])
             target_list.append(record[0])
 
