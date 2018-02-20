@@ -83,6 +83,6 @@ class Reply:
         return question, answer, random, frequency
 
 
-reply = Reply()
-
-reply.reply(None)
+# reply = Reply()
+#
+# reply.reply(None)
