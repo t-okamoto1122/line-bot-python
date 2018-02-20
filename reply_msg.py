@@ -8,17 +8,6 @@ from oauth2client.service_account import ServiceAccountCredentials
 from numpy.random import *
 
 
-# 最終行を取得
-def create_random_num():
-    str_list = list(filter(None, sheet.col_values(1)))  # fastest
-    return random_integers(len(str_list))
-
-
-# def select_random(all_records):
-#     for record in all_records:
-#         if record.cell()
-#     return
-
 scope = ['https://spreadsheets.google.com/feeds']
 spreadsheetId = '1zErUZR08O1AmemZWedtR3MqYvr35PvWr1FMYXlyJMAY'
 
@@ -28,13 +17,17 @@ client = gspread.authorize(credentials)
 sheet = client.open("English-line-bot").sheet1
 
 
+# 最終行を取得
+def create_random_num():
+    str_list = list(filter(None, sheet.col_values(1)))  # fastest
+    return random_integers(len(str_list))
+
+
 def select_random(all_records):
     target_list = []
-    print('select_random(),len(all_records)', len(all_records))
     for i, record in enumerate(all_records):
 
         if record[-1] != 'done':
-            print(record[-1])
             target_list.append(record[0])
 
     # all done
@@ -83,8 +76,3 @@ class Reply:
         sheet.update_cell(int(random), 5, 'done')
 
         return question, answer, random, frequency
-
-
-# reply = Reply()
-#
-# reply.reply(None)
