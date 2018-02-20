@@ -32,9 +32,9 @@ def select_random(all_records):
     target_list = []
     print('select_random(),len(all_records)', len(all_records))
     for i, record in enumerate(all_records):
-        print('len(record)' + str(len(record)))
 
-        if len(record) == 3:
+        if record[-1] == 'done':
+            print(record[-1])
             target_list.append(record[0])
 
     # all done
@@ -60,7 +60,6 @@ class Reply:
 
     def reply(self, request_text):
         all_records = sheet.get_all_values()
-        print('len(all_records)' + str(len(all_records)))
         random = select_random(all_records)
 
         # when all questions have set
