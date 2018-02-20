@@ -32,7 +32,7 @@ def select_random(all_records):
     target_list = []
     print('select_random(),len(all_records)', len(all_records))
     for i, record in enumerate(all_records):
-        print('len(record)' + len(record))
+        print('len(record)' + str(len(record)))
 
         if len(record) == 3:
             target_list.append(record[0])
