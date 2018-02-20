@@ -58,7 +58,7 @@ class Reply:
 
     def reply(self, request_text):
         all_records = sheet.get_all_values()
-        print('len(all_records)' + len(all_records))
+        print('len(all_records)' + str(len(all_records)))
         random = select_random(all_records)
 
         # when all questions have set
