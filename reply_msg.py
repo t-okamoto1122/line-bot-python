@@ -30,9 +30,10 @@ sheet = client.open("English-line-bot").sheet1
 
 def select_random(all_records):
     target_list = []
+    print('select_random(),len(all_records)', len(all_records))
     for i, record in enumerate(all_records):
 
-        if 'done' != record[4]:
+        if None is record[4]:
             target_list.append(record[0])
 
     # all done
