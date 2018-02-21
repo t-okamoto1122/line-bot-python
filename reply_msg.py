@@ -55,7 +55,7 @@ class Reply:
     def reply(self, request_text):
         all_records = sheet.get_all_values()
         max_count = len(all_records)
-        random, current_count = select_random(all_records)
+        random, remain_count = select_random(all_records)
 
         # when all questions have set
         if random == 0:
@@ -77,4 +77,4 @@ class Reply:
         # doneのものを取得する
         sheet.update_cell(int(random), 5, 'done')
 
-        return question, answer, random, frequency, current_count, max_count
+        return question, answer, random, frequency, max_count - remain_count, max_count
