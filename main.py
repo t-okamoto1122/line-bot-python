@@ -69,12 +69,13 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def message_text(event):
     reply = reply_msg.Reply()
-    question, answer, q_num, frequency = reply.reply(event.message.text)
+    question, answer, q_num, frequency, current_count, max_count = reply.reply(event.message.text)
 
     template_message = TemplateSendMessage(
         alt_text='Buttons template',
         template=ButtonsTemplate(
-            title='Question' + str(q_num) + '(' + str(frequency) + '回目' + ')', text=question,
+            title='Question' + str(q_num) + '(' + str(frequency) + '回目' + ')  ' + str(current_count) + '/' + str(
+                max_count), text=question,
             actions=[
                 PostbackTemplateAction(
                     label='Answer', text=answer,

@@ -32,10 +32,11 @@ def select_random(all_records):
 
     # all done
     if len(target_list) == 0:
-        return 0
+        # 1/ Max_count
+        return 0, 1
 
     random_num = random_integers(len(target_list))
-    return target_list[random_num - 1]
+    return target_list[random_num - 1], len(target_list)
 
 
 # remove 'done' from sheet and return random number
@@ -53,7 +54,8 @@ class Reply:
 
     def reply(self, request_text):
         all_records = sheet.get_all_values()
-        random = select_random(all_records)
+        max_count = len(all_records)
+        random, current_count = select_random(all_records)
 
         # when all questions have set
         if random == 0:
@@ -75,4 +77,4 @@ class Reply:
         # doneのものを取得する
         sheet.update_cell(int(random), 5, 'done')
 
-        return question, answer, random, frequency
+        return question, answer, random, frequency, current_count, max_count
